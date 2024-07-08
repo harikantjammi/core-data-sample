@@ -3,10 +3,12 @@ import XCTest
 
 final class core_data_sampleTests: XCTestCase {
     func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+        let coreDataContainer = NotesPersistentContainer.persistentContainer
+        Thread.sleep(forTimeInterval: 3.0)
+        let entityDescription = Note.entity()
+        let newNote = Note(entity: entityDescription,
+                           insertInto: coreDataContainer?.viewContext)
+        newNote.text = "Hari"
+        coreDataContainer?.viewContext.insert(newNote)
     }
 }
